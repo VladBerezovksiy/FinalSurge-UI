@@ -1,7 +1,7 @@
 package smokeTests;
 
-import logic.BaseElements;
-import logic.logic.LoginPageTestLogic;
+import logic.elements.PageElementsLogin;
+import logic.logic.LoginTestLogic;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
@@ -14,15 +14,15 @@ import utils.WebDriverWaitHelper;
 
 public class LoginTests extends BaseTest {
 
-    private LoginPageTestLogic logic;
+    private LoginTestLogic logic;
 
     @BeforeClass
     private void beforeClass(ITestContext iTestContext) {
         driver = DriverInstances.getInstance(Settings.DRIVER);
         setContextAttribute(iTestContext, "driver", driver);
         WebDriverWait wait = WebDriverWaitHelper.generateWaits(driver, 5, 30, 3);
-        BaseElements elements = new BaseElements(driver);
-        logic = new LoginPageTestLogic(driver, wait, elements);
+        PageElementsLogin elements = new PageElementsLogin(driver);
+        logic = new LoginTestLogic(driver, wait, elements);
         logic.getRootPage();
     }
 
@@ -41,8 +41,7 @@ public class LoginTests extends BaseTest {
         logic.checkLoginPage();
     }
 
-    // TODO: доделать тест
-    @Test/*(retryAnalyzer = Retry.class)*/
+    @Test(retryAnalyzer = Retry.class)
     private void test_02_checkForgotPasswordRestorationFunctionality() {
         logic.checkForgotPasswordRestorationFunctionality();
     }
@@ -51,4 +50,5 @@ public class LoginTests extends BaseTest {
     private void test_03_verificationOnTheMainPage() {
         logic.verificationOnTheMainPage();
     }
+
 }

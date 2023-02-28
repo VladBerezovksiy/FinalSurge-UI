@@ -1,29 +1,35 @@
 package smokeTests;
 
-import logic.elements.PageElementsMessageBoards;
-import logic.logic.MessageBoardsTestLogic;
+import logic.BaseElements;
+import logic.MainLogic;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import utils.DriverInstances;
-import utils.Retry;
-import utils.Settings;
-import utils.WebDriverWaitHelper;
+import utils.*;
 
-public class MessageBoardsTests extends BaseTest {
+public class LogoutTests extends BaseTest {
 
-    private MessageBoardsTestLogic logic;
+    private MainLogic logic;
 
     @BeforeClass
     private void beforeClass(ITestContext iTestContext) {
         driver = DriverInstances.getInstance(Settings.DRIVER);
         setContextAttribute(iTestContext, "driver", driver);
         WebDriverWait wait = WebDriverWaitHelper.generateWaits(driver, 5, 30, 3);
-        PageElementsMessageBoards elements = new PageElementsMessageBoards(driver);
-        logic = new MessageBoardsTestLogic(driver, wait, elements);
-        logic.getRootPage();
+        BaseElements elements = new BaseElements(driver);
+        logic = new MainLogic(driver, wait, elements) {
+            @Override
+            public void getRootPage() {
+
+            }
+
+            @Override
+            public void backToRootPage() {
+
+            }
+        };
     }
 
     private void setContextAttribute(ITestContext iTestContext, String attributeKey, Object attributeValue) {
@@ -37,7 +43,9 @@ public class MessageBoardsTests extends BaseTest {
 
 
     @Test(retryAnalyzer = Retry.class)
-    private void test_01_checkLoginPage() {
-//        logic.checkLoginPage();
+    private void test_01_logoutLogin() {
+        logic.login(Variables.MAIN_ACCOUNT, Variables.MAIN_PASSWORD);
+        logic.logOut();
     }
+
 }

@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.NoSuchElementException;
 
-import static utils.Variables.*;
+import static utils.Variables.FINALSURGE_URL;
 
 public abstract class MainLogic {
 

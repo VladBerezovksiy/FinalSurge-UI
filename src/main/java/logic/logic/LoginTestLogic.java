@@ -1,16 +1,16 @@
 package logic.logic;
 
-import logic.BaseElements;
 import logic.MainLogic;
+import logic.elements.PageElementsLogin;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.Variables;
 
-public class LoginPageTestLogic extends MainLogic {
+public class LoginTestLogic extends MainLogic {
 
-    private BaseElements elements;
+    private PageElementsLogin elements;
 
-    public LoginPageTestLogic(WebDriver driver, WebDriverWait wait, BaseElements elements) {
+    public LoginTestLogic(WebDriver driver, WebDriverWait wait, PageElementsLogin elements) {
         super(driver, wait, elements);
         this.elements = elements;
     }
@@ -34,14 +34,20 @@ public class LoginPageTestLogic extends MainLogic {
     }
 
     public void checkLoginPage() {
-        getRootPage();
         incorrectCredentialsLogin();
         login(Variables.MAIN_ACCOUNT, Variables.MAIN_PASSWORD);
         logOut();
     }
 
     public void checkForgotPasswordRestorationFunctionality() {
+        if (checkForExistence(elements.forgotPasswordBtnLocator)) {
+            clickWhenReady(elements.forgotPasswordButton);
+            waitForVisible(elements.emailInputInForgotPass).clear();
+            waitForVisible(elements.emailInputInForgotPass).sendKeys("");
+            clickWhenReady(elements.loginButton);
 
+            // need commercial mail ...
+        }
     }
 
     public void verificationOnTheMainPage() {

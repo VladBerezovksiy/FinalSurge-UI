@@ -1,5 +1,7 @@
 package smokeTests;
 
+import logic.elements.PageElementsResources;
+import logic.logic.ResourcesTestLogic;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
@@ -12,16 +14,16 @@ import utils.WebDriverWaitHelper;
 
 public class ResourcesTests extends BaseTest {
 
-//    private LoginPageTestLogic logic;
+    private ResourcesTestLogic logic;
 
     @BeforeClass
     private void beforeClass(ITestContext iTestContext) {
         driver = DriverInstances.getInstance(Settings.DRIVER);
         setContextAttribute(iTestContext, "driver", driver);
         WebDriverWait wait = WebDriverWaitHelper.generateWaits(driver, 5, 30, 3);
-//        BaseElements elements = new BaseElements(driver);
-//        logic = new LoginPageTestLogic(driver, wait, elements);
-//        logic.getRootPage();
+        PageElementsResources elements = new PageElementsResources(driver);
+        logic = new ResourcesTestLogic(driver, wait, elements);
+        logic.getRootPage();
     }
 
     private void setContextAttribute(ITestContext iTestContext, String attributeKey, Object attributeValue) {

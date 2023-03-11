@@ -37,7 +37,13 @@ public class TrainingPlansTests extends BaseTest {
 
 
     @Test(retryAnalyzer = Retry.class)
-    private void test_01_checkLoginPage() {
-//        logic.checkLoginPage();
+    private void test_01_viewMyPlan() {
+        logic.viewMyPlan();
     }
+
+    @Test(retryAnalyzer = Retry.class)
+    private void test_02_findPlan() {
+        logic.findAPlan();
+    }
+
 }

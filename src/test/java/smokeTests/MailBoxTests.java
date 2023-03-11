@@ -1,7 +1,7 @@
 package smokeTests;
 
-import logic.elements.PageElementsDailyVitals;
-import logic.logic.DailyVitalsTestLogic;
+import logic.elements.PageElementsMailBox;
+import logic.logic.MailBoxTestLogic;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
@@ -12,17 +12,17 @@ import utils.Retry;
 import utils.Settings;
 import utils.WebDriverWaitHelper;
 
-public class DailyVitalsTests extends BaseTest {
+public class MailBoxTests extends BaseTest {
 
-    private DailyVitalsTestLogic logic;
+    private MailBoxTestLogic logic;
 
     @BeforeClass
     private void beforeClass(ITestContext iTestContext) {
         driver = DriverInstances.getInstance(Settings.DRIVER);
         setContextAttribute(iTestContext, "driver", driver);
         WebDriverWait wait = WebDriverWaitHelper.generateWaits(driver, 5, 30, 3);
-        PageElementsDailyVitals elements = new PageElementsDailyVitals(driver);
-        logic = new DailyVitalsTestLogic(driver, wait, elements);
+        PageElementsMailBox elements = new PageElementsMailBox(driver);
+        logic = new MailBoxTestLogic(driver, wait, elements);
         logic.getRootPage();
     }
 
@@ -32,14 +32,18 @@ public class DailyVitalsTests extends BaseTest {
 
     @AfterClass
     private void tearDown() {
-        logic.clearHistory();
         driver.quit();
     }
 
 
     @Test(retryAnalyzer = Retry.class)
-    private void test_01_checkViewAndVitals() {
-        logic.addDailyAndVitals();
+    private void test_01_mailPoxInbox() {
+        logic.verifyInbox();
+    }
+
+    @Test(retryAnalyzer = Retry.class)
+    private void test_02_mailPoxSent() {
+        logic.verifySent();
     }
 
 }

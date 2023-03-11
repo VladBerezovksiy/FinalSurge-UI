@@ -2,6 +2,8 @@ package logic.elements;
 
 import logic.BaseElements;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 public class PageElementsMessageBoards extends BaseElements {
 
@@ -10,6 +12,7 @@ public class PageElementsMessageBoards extends BaseElements {
     }
 
 
-//    @FindBy(id = "FEmail")
-//    public WebElement emailInputInForgotPass;
+    @FindBy(id = "ErrorMessageTxt")
+    public WebElement errorTextMessage;
+
 }

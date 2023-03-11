@@ -32,6 +32,7 @@ public class WorkoutsTests extends BaseTest {
 
     @AfterClass
     private void tearDown() {
+        // TODO: добавить очистку (View Calendar, Workout Library, Pace Zones, Activity Types)
         driver.quit();
     }
 
@@ -40,4 +41,45 @@ public class WorkoutsTests extends BaseTest {
     private void test_01_addWorkout() {
         logic.addWorkout();
     }
+
+    @Test(retryAnalyzer = Retry.class)
+    private void test_02_importGarmin() {
+        logic.importGarmin();
+    }
+
+    @Test(retryAnalyzer = Retry.class)
+    private void test_03_viewCalendar() {
+        logic.viewCalendar();
+    }
+
+    @Test(dependsOnMethods = "test_01_addWorkout", retryAnalyzer = Retry.class)
+    private void test_04_viewReports() {
+        logic.viewReport();
+    }
+
+    @Test(dependsOnMethods = "test_01_addWorkout", retryAnalyzer = Retry.class)
+    private void test_05_printWorkout() {
+        logic.printWorkout();
+    }
+
+    @Test(retryAnalyzer = Retry.class)
+    private void test_06_addNewWorkoutLibrary() {
+        logic.addWorkoutLibrary();
+    }
+
+    @Test(retryAnalyzer = Retry.class)
+    private void test_07_addNewActivityZone() {
+        logic.addNewActivityZone();
+    }
+
+    @Test(retryAnalyzer = Retry.class)
+    private void test_08_customizeActivityType() {
+        logic.addNewActivityType();
+    }
+
+    @Test(retryAnalyzer = Retry.class)
+    private void test_09_importData() {
+        logic.importData();
+    }
+
 }

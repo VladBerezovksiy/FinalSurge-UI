@@ -12,9 +12,10 @@ import utils.Settings;
 import utils.Variables;
 
 import java.io.File;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 import java.util.NoSuchElementException;
 
 import static utils.Variables.FINALSURGE_URL;
@@ -736,7 +737,6 @@ public abstract class MainLogic {
 
     /**
      * Closes a File Manager window
-     *
      * @param patternPath
      */
     public void clickWithSikuli(String patternPath) {
@@ -767,6 +767,18 @@ public abstract class MainLogic {
     public void switchToFrame(WebElement element) {
         waitForVisible(element);
         driver.switchTo().frame(element);
+    }
+
+    public void switchToNewWindow() {
+        Set<String> set = driver.getWindowHandles();
+        String[] array = set.toArray(new String[0]);
+        driver.switchTo().window(array[1]);
+    }
+
+    public void switchToDefauldWindow() {
+        Set<String> set = driver.getWindowHandles();
+        String[] array = set.toArray(new String[0]);
+        driver.switchTo().window(array[0]);
     }
 
     /**
@@ -806,16 +818,6 @@ public abstract class MainLogic {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-    }
-
-    /**
-     * Generates a unique title with full current date and time
-     *
-     * @param base a text which will be a part of the title
-     * @return a generated title will be returned
-     */
-    public String makeTitle(String base) {
-        return base + LocalDateTime.now();
     }
 
     /**

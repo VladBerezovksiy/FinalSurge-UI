@@ -1,17 +1,16 @@
 package logic.logic;
 
 import logic.MainLogic;
-import logic.elements.PageElementsGearRoutes;
+import logic.elements.PageElementsPreferences;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class GearRoutes extends MainLogic {
+public class PreferencesTestLogic extends MainLogic {
 
-    private PageElementsGearRoutes elements;
+    private PageElementsPreferences elements;
 
-    public GearRoutes(WebDriver driver, WebDriverWait wait, PageElementsGearRoutes elements) {
+    public PreferencesTestLogic(WebDriver driver, WebDriverWait wait, PageElementsPreferences elements) {
         super(driver, wait, elements);
-        this.elements = elements;
     }
 
     @Override

@@ -37,7 +37,8 @@ public class ResourcesTests extends BaseTest {
 
 
     @Test(retryAnalyzer = Retry.class)
-    private void test_01_checkLoginPage() {
-//        logic.checkLoginPage();
+    private void test_01_viewFiles() {
+        logic.viewFiles();
     }
+
 }

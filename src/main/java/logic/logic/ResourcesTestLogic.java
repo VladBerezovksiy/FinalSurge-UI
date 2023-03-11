@@ -4,6 +4,8 @@ import logic.MainLogic;
 import logic.elements.PageElementsResources;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import utils.Variables;
 
 public class ResourcesTestLogic extends MainLogic {
 
@@ -24,5 +26,13 @@ public class ResourcesTestLogic extends MainLogic {
         browseLoginPage();
     }
 
+
+    public void viewFiles() {
+        login(Variables.MAIN_ACCOUNT, Variables.MAIN_PASSWORD);
+        hoverOverElement(elements.resourcesBtn);
+        clickWhenReady(elements.viewFilesResourcesBtn);
+        makePause(3000);
+        Assert.assertTrue(elements.aboutInfoText.isDisplayed(), "Page doesn't open!!!");
+    }
 
 }

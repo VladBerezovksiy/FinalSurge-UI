@@ -4,6 +4,8 @@ import logic.MainLogic;
 import logic.elements.PageElementsMessageBoards;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import utils.Variables;
 
 public class MessageBoardsTestLogic extends MainLogic {
 
@@ -25,4 +27,11 @@ public class MessageBoardsTestLogic extends MainLogic {
     }
 
 
+    public void viewBoards() {
+        login(Variables.MAIN_ACCOUNT, Variables.MAIN_PASSWORD);
+        hoverOverElement(elements.messageBoardsBtn);
+        clickWhenReady(elements.viewBoardsBtn);
+        makePause(3000);
+        Assert.assertTrue(elements.errorTextMessage.isDisplayed(), "Page doesn't open!!!");
+    }
 }

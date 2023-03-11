@@ -49,7 +49,7 @@ public class Variables {
     public static final String UPLOAD_CANCEL = "upload_cancel.png";
     public static final String WINDOWS_CLOSE = "windows_close.png";
     public static final String KEEP_FILE = "keep_file.png";
-    public static final String PRINT_CANCEL = "print_cancel.png";
+    public static final String PRINT_BUTTON = "print_button.png";
     public static final String PRINT_CLOSE = "print_close.png";
 
 

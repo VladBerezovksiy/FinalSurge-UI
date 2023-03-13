@@ -15,6 +15,7 @@
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
+                    <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
             <plugin>
@@ -53,11 +54,11 @@
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/com.sikulix/sikulixapi -->
-        <dependency>
-            <groupId>com.sikulix</groupId>
-            <artifactId>sikulixapi</artifactId>
-            <version>1.1.0</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.sikulix</groupId>-->
+<!--            <artifactId>sikulixapi</artifactId>-->
+<!--            <version>1.1.0</version>-->
+<!--        </dependency>-->
 
         <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-testng -->
         <dependency>

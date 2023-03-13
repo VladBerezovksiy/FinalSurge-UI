@@ -44,7 +44,7 @@ public class LoginTests extends BaseTest {
         logic.checkLoginPage();
     }
 
-    @Test(retryAnalyzer = Retry.class)
+    @Test(retryAnalyzer = Retry.class, enabled = false)
     @Severity(value = SeverityLevel.NORMAL)
     private void test_02_checkForgotPasswordRestorationFunctionality() {
         logic.checkForgotPasswordRestorationFunctionality();

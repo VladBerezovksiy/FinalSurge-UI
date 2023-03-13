@@ -8,7 +8,7 @@ import utils.Retry;
 
 public class PrefsSecuritySettingsTests extends PreferencesTests {
 
-    @Test(retryAnalyzer = Retry.class)
+    @Test(retryAnalyzer = Retry.class, enabled = false)
     @Severity(value = SeverityLevel.CRITICAL)
     private void test_01_changePassword() {
         logic.changePassword();

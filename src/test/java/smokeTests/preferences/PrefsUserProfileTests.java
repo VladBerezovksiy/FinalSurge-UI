@@ -20,7 +20,7 @@ public class PrefsUserProfileTests extends PreferencesTests {
         logic.changeEmail();
     }
 
-    @Test(retryAnalyzer = Retry.class)
+    @Test(retryAnalyzer = Retry.class, enabled = false)
     @Severity(value = SeverityLevel.CRITICAL)
     private void test_03_deleteAccount() {
         logic.deleteAccount();

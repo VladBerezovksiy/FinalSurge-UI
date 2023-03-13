@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Final Surge" parallel="classes" thread-count="27">
+    <test name="Login">
+        <classes>
+            <class name="smokeTests.LoginTests"/>
+            <class name="smokeTests.LogoutTests"/>
+        </classes>
+    </test>
+    <test name="Workout">
+        <classes>
+            <class name="smokeTests.WorkoutsTests"/>
+        </classes>
+    </test>
+    <test name="Daily Vitals">
+        <classes>
+            <class name="smokeTests.DailyVitalsTests"/>
+        </classes>
+    </test>
+    <test name="Gear // Routes">
+        <classes>
+            <class name="smokeTests.GearRoutesTests"/>
+        </classes>
+    </test>
+    <test name="Training Plans">
+        <classes>
+            <class name="smokeTests.TrainingPlansTests"/>
+        </classes>
+    </test>
+    <test name="Resources">
+        <classes>
+            <class name="smokeTests.ResourcesTests"/>
+        </classes>
+    </test>
+    <test name="Message Boards">
+        <classes>
+            <class name="smokeTests.MessageBoardsTests"/>
+        </classes>
+    </test>
+    <test name="Workout Calculators">
+        <classes>
+            <class name="smokeTests.WorkoutCalcTests"/>
+        </classes>
+    </test>
+    <test name="Other Calculators">
+        <classes>
+            <class name="smokeTests.OtherCalcTests"/>
+        </classes>
+    </test>
+    <test name="MailBox">
+        <classes>
+            <class name="smokeTests.MailBoxTests"/>
+        </classes>
+    </test>
+    <test name="Preferences">
+        <classes>
+            <class name="smokeTests.preferences.PrefsUserProfileTests"/>
+            <class name="smokeTests.preferences.PrefsUserSettingsTests"/>
+            <class name="smokeTests.preferences.PrefsCalendarSyncTests"/>
+            <class name="smokeTests.preferences.PrefsSocialMediaTests"/>
+            <class name="smokeTests.preferences.PrefsSecuritySettingsTests"/>
+        </classes>
+    </test>
+</suite>

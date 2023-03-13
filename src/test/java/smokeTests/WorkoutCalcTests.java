@@ -1,5 +1,7 @@
 package smokeTests;
 
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import logic.elements.PageElementsWorkoutCalc;
 import logic.logic.WorkoutCalcTestLogic;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -37,26 +39,31 @@ public class WorkoutCalcTests extends BaseTest {
 
 
     @Test(retryAnalyzer = Retry.class)
+    @Severity(value = SeverityLevel.NORMAL)
     private void test_01_workoutCalcIntensity() {
         logic.addIntensity();
     }
 
     @Test(retryAnalyzer = Retry.class)
+    @Severity(value = SeverityLevel.NORMAL)
     private void test_02_workoutCalcHansons() {
         logic.addHansons();
     }
 
     @Test(retryAnalyzer = Retry.class)
+    @Severity(value = SeverityLevel.NORMAL)
     private void test_03_workoutCalcMcMillan() {
         logic.addMcMillan();
     }
 
     @Test(retryAnalyzer = Retry.class)
+    @Severity(value = SeverityLevel.NORMAL)
     private void test_04_workoutCalcTinman() {
         logic.addTinman();
     }
 
     @Test(retryAnalyzer = Retry.class)
+    @Severity(value = SeverityLevel.NORMAL)
     private void test_05_workoutCalcPalladino() {
         logic.addPalladino();
     }

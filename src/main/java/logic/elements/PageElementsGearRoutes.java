@@ -13,7 +13,6 @@ public class PageElementsGearRoutes extends BaseElements {
         super(driver);
     }
 
-    // TODO: совместить локаторы
 
     @FindBy(xpath = "//a[@title='Edit']")
     public WebElement editBtn;
@@ -23,6 +22,39 @@ public class PageElementsGearRoutes extends BaseElements {
 
     @FindBy(xpath = "//div[@class='modal-footer']/a[contains(.,'OK')]")
     public WebElement okBtn;
+
+    @FindBy(id = "saveButton")
+    public WebElement submitBtn;
+
+    @FindBy(css = ".w-box-content tr td:nth-child(2)")
+    public List<WebElement> tableResults;
+
+    @FindBy(id = "ShoeName")
+    public WebElement nameInputField;
+
+    @FindBy(id = "ShoeModel")
+    public WebElement modelInputField;
+
+    @FindBy(id = "ShoeCost")
+    public WebElement costInputField;
+
+    @FindBy(id = "StartDist")
+    public WebElement distStartInputField;
+
+    @FindBy(id = "DistAlert")
+    public WebElement distAlertInputField;
+
+    @FindBy(id = "ShoeNotes")
+    public WebElement notesInputField;
+
+    @FindBy(css = "#s2id_ShoeBrand a")
+    public WebElement brandDropdown;
+
+    @FindBy(css = ".select2-results")
+    public WebElement brandDropdownView;
+
+    @FindBy(css = ".select2-results li")
+    public List<WebElement> brandDropdownOption;
 
 
     /************************************************ ROUTES ELEMENTS *************************************************/
@@ -54,9 +86,6 @@ public class PageElementsGearRoutes extends BaseElements {
     @FindBy(id = "Notes")
     public WebElement routesDescInputField;
 
-    @FindBy(css = ".w-box-content tr td:nth-child(1)")
-    public List<WebElement> currentRoutes;
-
 
     /************************************************ BIKES ELEMENTS *************************************************/
 
@@ -72,24 +101,6 @@ public class PageElementsGearRoutes extends BaseElements {
     @FindBy(id = "ShoeEditForm")
     public WebElement shoeForm;
 
-    @FindBy(id = "ShoeName")
-    public WebElement shoeNameInputField;
-
-    @FindBy(css = "#s2id_ShoeBrand a")
-    public WebElement brandDropdown;
-
-    @FindBy(css = ".select2-results")
-    public WebElement brandDropdownView;
-
-    @FindBy(css = ".select2-results li")
-    public List<WebElement> brandDropdownOption;
-
-    @FindBy(id = "ShoeModel")
-    public WebElement shoeModelInputField;
-
-    @FindBy(id = "ShoeCost")
-    public WebElement shoeCostInputField;
-
     @FindBy(id = "ShoeSize")
     public WebElement shoeSizeDropdown;
 
@@ -98,21 +109,5 @@ public class PageElementsGearRoutes extends BaseElements {
 
     @FindBy(css = "#ShoeSize option")
     public List<WebElement> shoeSizeDropdownOption;
-
-    @FindBy(id = "StartDist")
-    public WebElement shoeDistStartInputField;
-
-    @FindBy(id = "DistAlert")
-    public WebElement shoeDistAlertInputField;
-
-    @FindBy(id = "ShoeNotes")
-    public WebElement shoeNotesInputField;
-
-    @FindBy(id = "saveButton")
-    public WebElement submitAddShoeBtn;
-
-    @FindBy(css = ".w-box-content tr td:nth-child(2)")
-    public List<WebElement> currentShoes;
-
 
 }

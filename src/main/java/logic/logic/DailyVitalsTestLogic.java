@@ -1,5 +1,6 @@
 package logic.logic;
 
+import io.qameta.allure.Step;
 import logic.MainLogic;
 import logic.elements.PageElementsDailyVitals;
 import logic.models.DailyVitalsModal;
@@ -34,6 +35,7 @@ public class DailyVitalsTestLogic extends MainLogic {
     }
 
 
+    @Step()
     public void clearHistory() {
         for (int i = 0; i < elements.dateLinks.size(); i++) {
             for (int j = 1; j <= elements.columns.size(); j++) {
@@ -52,6 +54,7 @@ public class DailyVitalsTestLogic extends MainLogic {
         }
     }
 
+    @Step()
     public void addDailyAndVitals() {
         login(Variables.MAIN_ACCOUNT, Variables.MAIN_PASSWORD);
         hoverOverElement(elements.dailyVitalsBtn);

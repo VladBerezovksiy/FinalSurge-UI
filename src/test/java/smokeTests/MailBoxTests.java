@@ -1,5 +1,7 @@
 package smokeTests;
 
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import logic.elements.PageElementsMailBox;
 import logic.logic.MailBoxTestLogic;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -37,12 +39,14 @@ public class MailBoxTests extends BaseTest {
 
 
     @Test(retryAnalyzer = Retry.class)
-    private void test_01_mailPoxInbox() {
+    @Severity(value = SeverityLevel.MINOR)
+    private void test_01_mailBoxInbox() {
         logic.verifyInbox();
     }
 
     @Test(retryAnalyzer = Retry.class)
-    private void test_02_mailPoxSent() {
+    @Severity(value = SeverityLevel.MINOR)
+    private void test_02_mailBoxSent() {
         logic.verifySent();
     }
 

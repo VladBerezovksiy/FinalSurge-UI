@@ -1,5 +1,6 @@
 package logic.logic;
 
+import io.qameta.allure.Step;
 import logic.MainLogic;
 import logic.elements.PageElementsWorkoutCalc;
 import logic.models.WorkoutCalcModel;
@@ -30,6 +31,7 @@ public class WorkoutCalcTestLogic extends MainLogic {
     }
 
 
+    @Step()
     public void addIntensity() {
         login(Variables.MAIN_ACCOUNT, Variables.MAIN_PASSWORD);
         clickWhenReady(elements.workoutCalculatorIcon);
@@ -53,6 +55,7 @@ public class WorkoutCalcTestLogic extends MainLogic {
                 "Incorrect data has been entered!");
     }
 
+    @Step()
     public void addHansons() {
         login(Variables.MAIN_ACCOUNT, Variables.MAIN_PASSWORD);
         clickWhenReady(elements.workoutCalculatorIcon);
@@ -86,6 +89,7 @@ public class WorkoutCalcTestLogic extends MainLogic {
                 "Incorrect data has been entered!");
     }
 
+    @Step()
     public void addMcMillan() {
         login(Variables.MAIN_ACCOUNT, Variables.MAIN_PASSWORD);
         clickWhenReady(elements.workoutCalculatorIcon);
@@ -121,6 +125,7 @@ public class WorkoutCalcTestLogic extends MainLogic {
                 "Incorrect data has been entered!");
     }
 
+    @Step()
     public void addTinman() {
         login(Variables.MAIN_ACCOUNT, Variables.MAIN_PASSWORD);
         clickWhenReady(elements.workoutCalculatorIcon);
@@ -146,6 +151,7 @@ public class WorkoutCalcTestLogic extends MainLogic {
                 "Incorrect data has been entered!");
     }
 
+    @Step()
     public void addPalladino() {
         login(Variables.MAIN_ACCOUNT, Variables.MAIN_PASSWORD);
         clickWhenReady(elements.workoutCalculatorIcon);

@@ -1,5 +1,6 @@
 package logic.logic;
 
+import io.qameta.allure.Step;
 import logic.MainLogic;
 import logic.elements.PageElementsWorkout;
 import logic.models.WorkoutModel;
@@ -32,6 +33,7 @@ public class WorkoutTestLogic extends MainLogic {
     }
 
 
+    @Step()
     public void addWorkout() {
         login(Variables.MAIN_ACCOUNT, Variables.MAIN_PASSWORD);
         hoverOverElement(elements.workoutsBtn);
@@ -74,25 +76,28 @@ public class WorkoutTestLogic extends MainLogic {
             waitForVisible(elements.ageGroupPlaceInputField)
                     .sendKeys(String.valueOf(workoutModel.getAgePlace()));
         } else {
-            // TODO: дописать логику на "Advanced Workout (Intervals)"
+            clickWhenReady(elements.basicWorkoutTab);
         }
         clickWhenReady(elements.howIFeltRadioButton);
         selectDropdownOption(elements.perceivedEffortDropdown, elements.perceivedEffortDropdownView,
                 elements.perceivedEffortDropdownOption, 2);
         clickWhenReady(elements.addWorkoutSubmitBtn);
         makePause(3000);
-        // TODO: дописать ассерты на "WORKOUT DETAILS"
         Assert.assertFalse(isElementPresent(elements.addWorkoutSubmitBtnLocator),
                 "Didn't was add workout!!!");
     }
 
+    @Step()
     public void importGarmin() {
         login(Variables.MAIN_ACCOUNT, Variables.MAIN_PASSWORD);
         hoverOverElement(elements.workoutsBtn);
         clickWhenReady(elements.garminBtn);
-        // TODO:
+        waitForJSToBeLoaded();
+        Assert.assertTrue(elements.optionsTable.isDisplayed(),
+                "Garmin import page wasn't open!!!");
     }
 
+    @Step()
     public void viewCalendar() {
         login(Variables.MAIN_ACCOUNT, Variables.MAIN_PASSWORD);
         hoverOverElement(elements.workoutsBtn);
@@ -143,12 +148,11 @@ public class WorkoutTestLogic extends MainLogic {
                 elements.perceivedEffortDropdownOption, 2);
         clickWhenReady(elements.addWorkoutSubmitBtn);
         makePause(3000);
-        // TODO: добавить ассерт со сравнением на то что данные на календари равны
         Assert.assertFalse(elements.dataInCalendar.isEmpty(),
                 "Didn't was add quick workout in Calendar!!!");
-        // TODO: добавить логику на "Workout Library"
     }
 
+    @Step()
     public void viewReport() {
         hoverOverElement(elements.workoutsBtn);
         clickWhenReady(elements.reportsStatisticsBtn);
@@ -165,14 +169,14 @@ public class WorkoutTestLogic extends MainLogic {
 
         for (int i = 0; i < elements.reportTable.size(); i++) {
             if (elements.reportTable.get(i).getText().toLowerCase(Locale.ROOT).contains("run - hills")) {
-                System.out.println(elements.reportTable.get(i).getText());
-                // TODO: добавить ассерт со сравнением на то что данные на календари равны
-                Assert.assertTrue(elements.reportTable.get(i).isDisplayed(), "ERROR");
                 break;
+            } else if ((i + 1) == elements.reportTable.size() && !elements.reportTable.get(i).getText().toLowerCase(Locale.ROOT).contains("run - hills")) {
+                Assert.fail("Report Filter doesn't work!!!");
             }
         }
     }
 
+    @Step()
     public void printWorkout() {
         hoverOverElement(elements.workoutsBtn);
         clickWhenReady(elements.printWorkoutBtn);
@@ -204,6 +208,7 @@ public class WorkoutTestLogic extends MainLogic {
         makePause(5000);
     }
 
+    @Step()
     public void addWorkoutLibrary() {
         login(Variables.MAIN_ACCOUNT, Variables.MAIN_PASSWORD);
         hoverOverElement(elements.workoutsBtn);
@@ -227,12 +232,14 @@ public class WorkoutTestLogic extends MainLogic {
 
         for (int i = 0; i < elements.libraryTable.size(); i++) {
             if (elements.libraryTable.get(i).getText().contains(workoutModel.getNewLibrary())) {
-                // TODO: добавить ассерт со сравнением на то что данные на календари равны
                 break;
+            } else if ((i + 1) == elements.libraryTable.size() && !elements.libraryTable.get(i).getText().contains(workoutModel.getName())) {
+                Assert.fail("Doesn't added NEW WORKOUT TO LIBRARY!!!");
             }
         }
     }
 
+    @Step()
     public void addNewActivityZone() {
         login(Variables.MAIN_ACCOUNT, Variables.MAIN_PASSWORD);
         hoverOverElement(elements.workoutsBtn);
@@ -260,9 +267,11 @@ public class WorkoutTestLogic extends MainLogic {
         clickWhenReady(elements.addWorkoutSubmitBtn);
         makePause(3000);
         clickWhenReady(elements.plusIcon);
-        // TODO: добавить ассерт со сравнением на то что данные на календари равны
+        Assert.assertTrue(elements.tableNewActivityZone.isDisplayed(),
+                "Doesn't added NEW ACTIVITY ZONE!!!");
     }
 
+    @Step()
     public void addNewActivityType() {
         login(Variables.MAIN_ACCOUNT, Variables.MAIN_PASSWORD);
         hoverOverElement(elements.workoutsBtn);
@@ -274,17 +283,21 @@ public class WorkoutTestLogic extends MainLogic {
 
         for (int i = 0; i < elements.activityType.size(); i++) {
             if (elements.activityType.get(i).getText().contains(workoutModel.getName())) {
-                // TODO: добавить ассерт со сравнением на то что данные на календари равны
                 break;
+            } else if ((i + 1) == elements.activityType.size() && !elements.activityType.get(i).getText().contains(workoutModel.getName())) {
+                Assert.fail("Doesn't added NEW ACTIVITY TYPE!!!");
             }
         }
     }
 
+    @Step()
     public void importData() {
         login(Variables.MAIN_ACCOUNT, Variables.MAIN_PASSWORD);
         hoverOverElement(elements.workoutsBtn);
         clickWhenReady(elements.importDataBtn);
-        // TODO:
+        waitForJSToBeLoaded();
+        Assert.assertTrue(elements.optionsTable.isDisplayed(),
+                "Import data page wasn't open!!!");
     }
 
 }

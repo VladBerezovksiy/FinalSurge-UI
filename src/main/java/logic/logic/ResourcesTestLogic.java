@@ -1,5 +1,6 @@
 package logic.logic;
 
+import io.qameta.allure.Step;
 import logic.MainLogic;
 import logic.elements.PageElementsResources;
 import org.openqa.selenium.WebDriver;
@@ -27,6 +28,7 @@ public class ResourcesTestLogic extends MainLogic {
     }
 
 
+    @Step()
     public void viewFiles() {
         login(Variables.MAIN_ACCOUNT, Variables.MAIN_PASSWORD);
         hoverOverElement(elements.resourcesBtn);

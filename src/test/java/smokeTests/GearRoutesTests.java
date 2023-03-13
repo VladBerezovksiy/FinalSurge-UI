@@ -1,5 +1,7 @@
 package smokeTests;
 
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import logic.elements.PageElementsGearRoutes;
 import logic.logic.GearRoutesTestLogic;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -38,16 +40,19 @@ public class GearRoutesTests extends BaseTest {
 
 
     @Test(retryAnalyzer = Retry.class)
+    @Severity(value = SeverityLevel.NORMAL)
     private void test_01_addWorkout() {
         logic.addShoes();
     }
 
     @Test(retryAnalyzer = Retry.class)
+    @Severity(value = SeverityLevel.NORMAL)
     private void test_02_addBikes() {
         logic.addBikes();
     }
 
     @Test(retryAnalyzer = Retry.class)
+    @Severity(value = SeverityLevel.NORMAL)
     private void test_03_addRoutes() {
         logic.addRoutes();
     }

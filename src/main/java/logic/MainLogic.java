@@ -12,11 +12,11 @@ import utils.Settings;
 import utils.Variables;
 
 import java.io.File;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.List;
+import java.util.Locale;
 import java.util.NoSuchElementException;
+import java.util.Set;
 
 import static utils.Variables.FINALSURGE_URL;
 
@@ -610,7 +610,7 @@ public abstract class MainLogic {
     }
 
     /**
-     * Performs login with given credentials
+     * Performs login with given logic.credentials
      * and ensures that all web-elements were correctly loaded
      *
      * @param login

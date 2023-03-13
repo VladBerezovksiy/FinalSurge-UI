@@ -1,5 +1,6 @@
 package logic.logic;
 
+import io.qameta.allure.Step;
 import logic.MainLogic;
 import logic.elements.PageElementsLogin;
 import org.openqa.selenium.WebDriver;
@@ -26,6 +27,7 @@ public class LoginTestLogic extends MainLogic {
     }
 
 
+    @Step()
     public void incorrectCredentialsLogin() {
         waitForVisible(elements.loginPanel);
         waitForVisible(elements.emailInputField).sendKeys(Variables.NONEXISTENT_EMAIL);
@@ -33,12 +35,14 @@ public class LoginTestLogic extends MainLogic {
         clickWhenReady(elements.loginButton);
     }
 
+    @Step()
     public void checkLoginPage() {
         incorrectCredentialsLogin();
         login(Variables.MAIN_ACCOUNT, Variables.MAIN_PASSWORD);
         logOut();
     }
 
+    @Step()
     public void checkForgotPasswordRestorationFunctionality() {
         if (checkForExistence(elements.forgotPasswordBtnLocator)) {
             clickWhenReady(elements.forgotPasswordButton);
@@ -50,6 +54,7 @@ public class LoginTestLogic extends MainLogic {
         }
     }
 
+    @Step()
     public void verificationOnTheMainPage() {
         login(Variables.MAIN_ACCOUNT, Variables.MAIN_PASSWORD);
         logOut();

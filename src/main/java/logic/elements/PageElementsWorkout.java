@@ -15,6 +15,10 @@ public class PageElementsWorkout extends BaseElements {
     }
 
 
+    @FindBy(css = ".w-box-header h4")
+    public WebElement optionsTable;
+
+
     /************************************ NEW ACTIVITY TYPE ELEMENTS ***********************************************/
 
     @FindBy(id = "ATypeName")
@@ -65,7 +69,10 @@ public class PageElementsWorkout extends BaseElements {
     @FindBy(css = ".icon-plus")
     public WebElement plusIcon;
 
-    @FindBy(css = ".table-condensed td")
+    @FindBy(css = ".table-condensed")
+    public WebElement tableNewActivityZone;
+
+    @FindBy(css = ".table-condensed tr td:nth-child(2)")
     public List<WebElement> libraryTable;
 
 
@@ -100,7 +107,7 @@ public class PageElementsWorkout extends BaseElements {
     @FindBy(id = "groupBy1")
     public WebElement listViewRadioBtn;
 
-    @FindBy(css = ".table-striped tbody td")
+    @FindBy(css = ".table-striped tr td:nth-child(2)")
     public List<WebElement> reportTable;
 
 

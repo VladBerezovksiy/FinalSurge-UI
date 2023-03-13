@@ -1,4 +1,4 @@
-package credentials;
+package logic.credentials;
 
 import utils.PropertiesUtils;
 

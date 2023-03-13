@@ -1,5 +1,7 @@
 package smokeTests;
 
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import logic.BaseElements;
 import logic.MainLogic;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -43,6 +45,7 @@ public class LogoutTests extends BaseTest {
 
 
     @Test(retryAnalyzer = Retry.class)
+    @Severity(value = SeverityLevel.CRITICAL)
     private void test_01_logoutLogin() {
         logic.login(Variables.MAIN_ACCOUNT, Variables.MAIN_PASSWORD);
         logic.logOut();

@@ -1,5 +1,6 @@
 package logic.logic;
 
+import io.qameta.allure.Step;
 import logic.MainLogic;
 import logic.elements.PageElementsTrainingPlans;
 import org.openqa.selenium.WebDriver;
@@ -27,6 +28,7 @@ public class TrainingPlansTestLogic extends MainLogic {
     }
 
 
+    @Step()
     public void viewMyPlan() {
         login(Variables.MAIN_ACCOUNT, Variables.MAIN_PASSWORD);
         hoverOverElement(elements.trainingPlansBtn);
@@ -38,6 +40,7 @@ public class TrainingPlansTestLogic extends MainLogic {
         Assert.assertNotEquals(page1, page2, "Didn't go to new page!!!");
     }
 
+    @Step()
     public void findAPlan() {
         login(Variables.MAIN_ACCOUNT, Variables.MAIN_PASSWORD);
         String page1 = driver.getCurrentUrl();

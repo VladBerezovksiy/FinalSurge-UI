@@ -1,5 +1,7 @@
 package smokeTests;
 
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import logic.elements.PageElementsDailyVitals;
 import logic.logic.DailyVitalsTestLogic;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -38,6 +40,7 @@ public class DailyVitalsTests extends BaseTest {
 
 
     @Test(retryAnalyzer = Retry.class)
+    @Severity(value = SeverityLevel.NORMAL)
     private void test_01_checkViewAndVitals() {
         logic.addDailyAndVitals();
     }

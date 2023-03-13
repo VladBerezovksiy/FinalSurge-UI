@@ -1,5 +1,6 @@
 package logic.logic;
 
+import io.qameta.allure.Step;
 import logic.MainLogic;
 import logic.elements.PageElementsMailBox;
 import org.openqa.selenium.WebDriver;
@@ -27,6 +28,7 @@ public class MailBoxTestLogic extends MainLogic {
     }
 
 
+    @Step()
     public void verifyInbox() {
         login(Variables.MAIN_ACCOUNT, Variables.MAIN_PASSWORD);
         clickWhenReady(elements.mailBoxIcon);
@@ -37,6 +39,7 @@ public class MailBoxTestLogic extends MainLogic {
         Assert.assertTrue(elements.noMessagesText.isDisplayed());
     }
 
+    @Step()
     public void verifySent() {
         login(Variables.MAIN_ACCOUNT, Variables.MAIN_PASSWORD);
         clickWhenReady(elements.mailBoxIcon);

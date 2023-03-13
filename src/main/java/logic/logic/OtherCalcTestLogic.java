@@ -1,5 +1,6 @@
 package logic.logic;
 
+import io.qameta.allure.Step;
 import logic.MainLogic;
 import logic.elements.PageElementsOtherCalc;
 import logic.models.OtherCalcModel;
@@ -30,6 +31,7 @@ public class OtherCalcTestLogic extends MainLogic {
     }
 
 
+    @Step()
     public void addPaceCalc() {
         login(Variables.MAIN_ACCOUNT, Variables.MAIN_PASSWORD);
         clickWhenReady(elements.otherCalculatorIcon);
@@ -60,6 +62,7 @@ public class OtherCalcTestLogic extends MainLogic {
                 "Incorrect data has been entered!");
     }
 
+    @Step()
     public void addCaloricNeeds() {
         login(Variables.MAIN_ACCOUNT, Variables.MAIN_PASSWORD);
         clickWhenReady(elements.otherCalculatorIcon);

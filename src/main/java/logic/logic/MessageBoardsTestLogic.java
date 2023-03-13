@@ -1,5 +1,6 @@
 package logic.logic;
 
+import io.qameta.allure.Step;
 import logic.MainLogic;
 import logic.elements.PageElementsMessageBoards;
 import org.openqa.selenium.WebDriver;
@@ -27,6 +28,7 @@ public class MessageBoardsTestLogic extends MainLogic {
     }
 
 
+    @Step()
     public void viewBoards() {
         login(Variables.MAIN_ACCOUNT, Variables.MAIN_PASSWORD);
         hoverOverElement(elements.messageBoardsBtn);

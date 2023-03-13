@@ -1,5 +1,7 @@
 package smokeTests;
 
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import logic.elements.PageElementsLogin;
 import logic.logic.LoginTestLogic;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -37,16 +39,19 @@ public class LoginTests extends BaseTest {
 
 
     @Test(retryAnalyzer = Retry.class)
+    @Severity(value = SeverityLevel.NORMAL)
     private void test_01_checkLoginPage() {
         logic.checkLoginPage();
     }
 
     @Test(retryAnalyzer = Retry.class)
+    @Severity(value = SeverityLevel.NORMAL)
     private void test_02_checkForgotPasswordRestorationFunctionality() {
         logic.checkForgotPasswordRestorationFunctionality();
     }
 
     @Test(retryAnalyzer = Retry.class)
+    @Severity(value = SeverityLevel.CRITICAL)
     private void test_03_verificationOnTheMainPage() {
         logic.verificationOnTheMainPage();
     }

@@ -1,5 +1,6 @@
 package logic.logic;
 
+import io.qameta.allure.Step;
 import logic.MainLogic;
 import logic.elements.PageElementsGearRoutes;
 import logic.models.BikesModel;
@@ -34,8 +35,9 @@ public class GearRoutesTestLogic extends MainLogic {
     }
 
 
+    @Step()
     public void clearHistory() {
-        int size = elements.currentShoes.size();
+        int size = elements.tableResults.size();
         for (int i = 0; i < size; i++) {
             waitForVisible(elements.editBtn).click();
             waitForVisible(elements.trashBtn).click();
@@ -44,71 +46,74 @@ public class GearRoutesTestLogic extends MainLogic {
         }
     }
 
+    @Step()
     public void addShoes() {
         login(Variables.MAIN_ACCOUNT, Variables.MAIN_PASSWORD);
         hoverOverElement(elements.gearRoutesBtn);
         clickWhenReady(elements.shoesBtn);
         waitForVisible(elements.shoeForm);
-        waitForVisible(elements.shoeNameInputField).clear();
-        waitForVisible(elements.shoeNameInputField)
+        waitForVisible(elements.nameInputField).clear();
+        waitForVisible(elements.nameInputField)
                 .sendKeys(shoesModel.getName());
         selectDropdownOption(elements.brandDropdown, elements.brandDropdownView,
                 elements.brandDropdownOption, 3);
-        waitForVisible(elements.shoeModelInputField).clear();
-        waitForVisible(elements.shoeModelInputField)
+        waitForVisible(elements.modelInputField).clear();
+        waitForVisible(elements.modelInputField)
                 .sendKeys(shoesModel.getModal());
-        waitForVisible(elements.shoeCostInputField).clear();
-        waitForVisible(elements.shoeCostInputField)
+        waitForVisible(elements.costInputField).clear();
+        waitForVisible(elements.costInputField)
                 .sendKeys(String.valueOf(shoesModel.getCost()));
         selectDropdownOption(elements.shoeSizeDropdown, elements.shoeSizeDropdownView,
                 elements.shoeSizeDropdownOption, 4);
-        waitForVisible(elements.shoeDistStartInputField).clear();
-        waitForVisible(elements.shoeDistStartInputField)
+        waitForVisible(elements.distStartInputField).clear();
+        waitForVisible(elements.distStartInputField)
                 .sendKeys(String.valueOf(shoesModel.getStartingDistance()));
-        waitForVisible(elements.shoeDistAlertInputField).clear();
-        waitForVisible(elements.shoeDistAlertInputField)
+        waitForVisible(elements.distAlertInputField).clear();
+        waitForVisible(elements.distAlertInputField)
                 .sendKeys(String.valueOf(shoesModel.getDistanceAlert()));
-        waitForVisible(elements.shoeNotesInputField).clear();
-        waitForVisible(elements.shoeNotesInputField)
+        waitForVisible(elements.notesInputField).clear();
+        waitForVisible(elements.notesInputField)
                 .sendKeys(shoesModel.getNotes());
-        clickWhenReady(elements.submitAddShoeBtn);
+        clickWhenReady(elements.submitBtn);
         makePause(3000);
-        Assert.assertFalse(elements.currentShoes.isEmpty(),
+        Assert.assertFalse(elements.tableResults.isEmpty(),
                 "Didn't was add new Shoe!!!");
     }
 
+    @Step()
     public void addBikes() {
         login(Variables.MAIN_ACCOUNT, Variables.MAIN_PASSWORD);
         hoverOverElement(elements.gearRoutesBtn);
         clickWhenReady(elements.bikesBtn);
         waitForVisible(elements.bikeForm);
-        waitForVisible(elements.shoeNameInputField).clear();
-        waitForVisible(elements.shoeNameInputField)
+        waitForVisible(elements.nameInputField).clear();
+        waitForVisible(elements.nameInputField)
                 .sendKeys(bikesModel.getName());
         selectDropdownOption(elements.brandDropdown, elements.brandDropdownView,
                 elements.brandDropdownOption, 3);
-        waitForVisible(elements.shoeModelInputField).clear();
-        waitForVisible(elements.shoeModelInputField)
+        waitForVisible(elements.modelInputField).clear();
+        waitForVisible(elements.modelInputField)
                 .sendKeys(bikesModel.getModal());
-        waitForVisible(elements.shoeCostInputField).clear();
-        waitForVisible(elements.shoeCostInputField)
+        waitForVisible(elements.costInputField).clear();
+        waitForVisible(elements.costInputField)
                 .sendKeys(String.valueOf(bikesModel.getCost()));
-        waitForVisible(elements.shoeDistStartInputField).clear();
-        waitForVisible(elements.shoeDistStartInputField)
+        waitForVisible(elements.distStartInputField).clear();
+        waitForVisible(elements.distStartInputField)
                 .sendKeys(String.valueOf(bikesModel.getStartingDistance()));
         clickWhenReady(elements.trackDistCheckbox);
-        waitForVisible(elements.shoeDistAlertInputField).clear();
-        waitForVisible(elements.shoeDistAlertInputField)
+        waitForVisible(elements.distAlertInputField).clear();
+        waitForVisible(elements.distAlertInputField)
                 .sendKeys(String.valueOf(bikesModel.getDistanceAlert()));
-        waitForVisible(elements.shoeNotesInputField).clear();
-        waitForVisible(elements.shoeNotesInputField)
+        waitForVisible(elements.notesInputField).clear();
+        waitForVisible(elements.notesInputField)
                 .sendKeys(bikesModel.getNotes());
-        clickWhenReady(elements.submitAddShoeBtn);
+        clickWhenReady(elements.submitBtn);
         makePause(3000);
-        Assert.assertFalse(elements.currentShoes.isEmpty(),
+        Assert.assertFalse(elements.tableResults.isEmpty(),
                 "Didn't was add new Bike!!!");
     }
 
+    @Step()
     public void addRoutes() {
         login(Variables.MAIN_ACCOUNT, Variables.MAIN_PASSWORD);
         hoverOverElement(elements.gearRoutesBtn);
@@ -131,9 +136,9 @@ public class GearRoutesTestLogic extends MainLogic {
         waitForVisible(elements.routesDescInputField).clear();
         waitForVisible(elements.routesDescInputField)
                 .sendKeys(routesModel.getNotes());
-        clickWhenReady(elements.submitAddShoeBtn);
+        clickWhenReady(elements.submitBtn);
         makePause(3000);
-        Assert.assertFalse(elements.currentShoes.isEmpty(),
+        Assert.assertFalse(elements.tableResults.isEmpty(),
                 "Didn't was add new Route!!!");
     }
 

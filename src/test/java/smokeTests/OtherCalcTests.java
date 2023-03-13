@@ -1,5 +1,7 @@
 package smokeTests;
 
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import logic.elements.PageElementsOtherCalc;
 import logic.logic.OtherCalcTestLogic;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -37,11 +39,13 @@ public class OtherCalcTests extends BaseTest {
 
 
     @Test(retryAnalyzer = Retry.class)
+    @Severity(value = SeverityLevel.NORMAL)
     private void test_01_paceCalc() {
         logic.addPaceCalc();
     }
 
     @Test(retryAnalyzer = Retry.class)
+    @Severity(value = SeverityLevel.NORMAL)
     private void test_02_caloricNeeds() {
         logic.addCaloricNeeds();
     }

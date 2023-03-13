@@ -1,5 +1,7 @@
 package smokeTests;
 
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import logic.elements.PageElementsMessageBoards;
 import logic.logic.MessageBoardsTestLogic;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -37,6 +39,7 @@ public class MessageBoardsTests extends BaseTest {
 
 
     @Test(retryAnalyzer = Retry.class)
+    @Severity(value = SeverityLevel.MINOR)
     private void test_01_viewBoards() {
         logic.viewBoards();
     }

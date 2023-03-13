@@ -1,5 +1,7 @@
 package smokeTests;
 
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import logic.elements.PageElementsTrainingPlans;
 import logic.logic.TrainingPlansTestLogic;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -37,11 +39,13 @@ public class TrainingPlansTests extends BaseTest {
 
 
     @Test(retryAnalyzer = Retry.class)
+    @Severity(value = SeverityLevel.NORMAL)
     private void test_01_viewMyPlan() {
         logic.viewMyPlan();
     }
 
     @Test(retryAnalyzer = Retry.class)
+    @Severity(value = SeverityLevel.NORMAL)
     private void test_02_findPlan() {
         logic.findAPlan();
     }

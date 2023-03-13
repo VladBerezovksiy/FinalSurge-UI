@@ -1,5 +1,7 @@
 package smokeTests;
 
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import logic.elements.PageElementsResources;
 import logic.logic.ResourcesTestLogic;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -37,6 +39,7 @@ public class ResourcesTests extends BaseTest {
 
 
     @Test(retryAnalyzer = Retry.class)
+    @Severity(value = SeverityLevel.NORMAL)
     private void test_01_viewFiles() {
         logic.viewFiles();
     }

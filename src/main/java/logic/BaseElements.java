@@ -47,6 +47,9 @@ public class BaseElements {
 
     /**************************************** USER NAVIGATION BAR ****************************************************/
 
+    @FindBy(css = ".user-box-inner .unstyled li:nth-child(1)")
+    public WebElement settingsLink;
+
     @FindBy(css = ".user-box-inner .unstyled li:nth-child(3)")
     public WebElement logoutLink;
 

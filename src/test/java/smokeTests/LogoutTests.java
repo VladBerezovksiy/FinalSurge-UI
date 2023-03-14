@@ -8,17 +8,18 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import utils.*;
 
+@Listeners(WebEventListener.class)
 public class LogoutTests extends BaseTest {
 
     private MainLogic logic;
 
     @BeforeClass
     private void beforeClass(ITestContext iTestContext) {
-        driver = DriverInstances.getInstance(Settings.DRIVER);
-        setContextAttribute(iTestContext, "driver", driver);
+        driver = DriverInstances.getInstance(Settings.DRIVER, iTestContext);
         WebDriverWait wait = WebDriverWaitHelper.generateWaits(driver, 5, 30, 3);
         BaseElements elements = new BaseElements(driver);
         logic = new MainLogic(driver, wait, elements) {
@@ -32,10 +33,6 @@ public class LogoutTests extends BaseTest {
 
             }
         };
-    }
-
-    private void setContextAttribute(ITestContext iTestContext, String attributeKey, Object attributeValue) {
-        iTestContext.setAttribute(attributeKey, attributeValue);
     }
 
     @AfterClass

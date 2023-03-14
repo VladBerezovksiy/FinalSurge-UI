@@ -25,7 +25,6 @@ public class WebDriverWaitHelper {
      */
     public static WebDriverWait generateWaits (WebDriver driver, int iWait, int eWait, int pollingTime){
         driver.manage().timeouts().implicitlyWait(iWait, TimeUnit.SECONDS);
-//        driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
         WebDriverWait wait = new WebDriverWait(driver, eWait);
         wait.pollingEvery(pollingTime, TimeUnit.SECONDS);
         wait.ignoring(NoSuchElementException.class);

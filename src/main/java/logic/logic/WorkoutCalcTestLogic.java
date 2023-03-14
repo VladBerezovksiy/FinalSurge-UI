@@ -4,11 +4,13 @@ import io.qameta.allure.Step;
 import logic.MainLogic;
 import logic.elements.PageElementsWorkoutCalc;
 import logic.models.WorkoutCalcModel;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import utils.Variables;
 
+@Log4j2
 public class WorkoutCalcTestLogic extends MainLogic {
 
     private PageElementsWorkoutCalc elements;
@@ -31,7 +33,7 @@ public class WorkoutCalcTestLogic extends MainLogic {
     }
 
 
-    @Step()
+    @Step("Add Intensity in Workout Calc")
     public void addIntensity() {
         login(Variables.MAIN_ACCOUNT, Variables.MAIN_PASSWORD);
         clickWhenReady(elements.workoutCalculatorIcon);
@@ -55,7 +57,7 @@ public class WorkoutCalcTestLogic extends MainLogic {
                 "Incorrect data has been entered!");
     }
 
-    @Step()
+    @Step("Add Hansons in Workout Calc")
     public void addHansons() {
         login(Variables.MAIN_ACCOUNT, Variables.MAIN_PASSWORD);
         clickWhenReady(elements.workoutCalculatorIcon);
@@ -89,7 +91,7 @@ public class WorkoutCalcTestLogic extends MainLogic {
                 "Incorrect data has been entered!");
     }
 
-    @Step()
+    @Step("Add McMillan in Workout Calc")
     public void addMcMillan() {
         login(Variables.MAIN_ACCOUNT, Variables.MAIN_PASSWORD);
         clickWhenReady(elements.workoutCalculatorIcon);
@@ -125,7 +127,7 @@ public class WorkoutCalcTestLogic extends MainLogic {
                 "Incorrect data has been entered!");
     }
 
-    @Step()
+    @Step("Add Tinman in Workout Calc")
     public void addTinman() {
         login(Variables.MAIN_ACCOUNT, Variables.MAIN_PASSWORD);
         clickWhenReady(elements.workoutCalculatorIcon);
@@ -151,7 +153,7 @@ public class WorkoutCalcTestLogic extends MainLogic {
                 "Incorrect data has been entered!");
     }
 
-    @Step()
+    @Step("Add Palladino in Workout Calc")
     public void addPalladino() {
         login(Variables.MAIN_ACCOUNT, Variables.MAIN_PASSWORD);
         clickWhenReady(elements.workoutCalculatorIcon);

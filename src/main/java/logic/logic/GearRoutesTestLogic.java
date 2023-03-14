@@ -6,11 +6,13 @@ import logic.elements.PageElementsGearRoutes;
 import logic.models.BikesModel;
 import logic.models.RoutesModel;
 import logic.models.ShoesModel;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import utils.Variables;
 
+@Log4j2
 public class GearRoutesTestLogic extends MainLogic {
 
     private PageElementsGearRoutes elements;
@@ -35,7 +37,7 @@ public class GearRoutesTestLogic extends MainLogic {
     }
 
 
-    @Step()
+    @Step("Clear values of Gear & Routes")
     public void clearHistory() {
         int size = elements.tableResults.size();
         for (int i = 0; i < size; i++) {
@@ -46,7 +48,7 @@ public class GearRoutesTestLogic extends MainLogic {
         }
     }
 
-    @Step()
+    @Step("Add Shoe")
     public void addShoes() {
         login(Variables.MAIN_ACCOUNT, Variables.MAIN_PASSWORD);
         hoverOverElement(elements.gearRoutesBtn);
@@ -80,7 +82,7 @@ public class GearRoutesTestLogic extends MainLogic {
                 "Didn't was add new Shoe!!!");
     }
 
-    @Step()
+    @Step("Add Bike")
     public void addBikes() {
         login(Variables.MAIN_ACCOUNT, Variables.MAIN_PASSWORD);
         hoverOverElement(elements.gearRoutesBtn);
@@ -113,7 +115,7 @@ public class GearRoutesTestLogic extends MainLogic {
                 "Didn't was add new Bike!!!");
     }
 
-    @Step()
+    @Step("Add Route")
     public void addRoutes() {
         login(Variables.MAIN_ACCOUNT, Variables.MAIN_PASSWORD);
         hoverOverElement(elements.gearRoutesBtn);

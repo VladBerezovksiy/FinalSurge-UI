@@ -4,11 +4,13 @@ import io.qameta.allure.Step;
 import logic.MainLogic;
 import logic.elements.PageElementsOtherCalc;
 import logic.models.OtherCalcModel;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import utils.Variables;
 
+@Log4j2
 public class OtherCalcTestLogic extends MainLogic {
 
     private PageElementsOtherCalc elements;
@@ -31,7 +33,7 @@ public class OtherCalcTestLogic extends MainLogic {
     }
 
 
-    @Step()
+    @Step("Add date in Pace calculator")
     public void addPaceCalc() {
         login(Variables.MAIN_ACCOUNT, Variables.MAIN_PASSWORD);
         clickWhenReady(elements.otherCalculatorIcon);
@@ -62,7 +64,7 @@ public class OtherCalcTestLogic extends MainLogic {
                 "Incorrect data has been entered!");
     }
 
-    @Step()
+    @Step("Add date in Caloric calculator")
     public void addCaloricNeeds() {
         login(Variables.MAIN_ACCOUNT, Variables.MAIN_PASSWORD);
         clickWhenReady(elements.otherCalculatorIcon);

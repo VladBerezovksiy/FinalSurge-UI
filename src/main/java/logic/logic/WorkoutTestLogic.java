@@ -4,6 +4,7 @@ import io.qameta.allure.Step;
 import logic.MainLogic;
 import logic.elements.PageElementsWorkout;
 import logic.models.WorkoutModel;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -11,6 +12,7 @@ import utils.Variables;
 
 import java.util.Locale;
 
+@Log4j2
 public class WorkoutTestLogic extends MainLogic {
 
     private PageElementsWorkout elements;
@@ -33,7 +35,7 @@ public class WorkoutTestLogic extends MainLogic {
     }
 
 
-    @Step()
+    @Step("Check Add Workout")
     public void addWorkout() {
         login(Variables.MAIN_ACCOUNT, Variables.MAIN_PASSWORD);
         hoverOverElement(elements.workoutsBtn);
@@ -87,7 +89,7 @@ public class WorkoutTestLogic extends MainLogic {
                 "Didn't was add workout!!!");
     }
 
-    @Step()
+    @Step("Check Import Garmin")
     public void importGarmin() {
         login(Variables.MAIN_ACCOUNT, Variables.MAIN_PASSWORD);
         hoverOverElement(elements.workoutsBtn);
@@ -97,7 +99,7 @@ public class WorkoutTestLogic extends MainLogic {
                 "Garmin import page wasn't open!!!");
     }
 
-    @Step()
+    @Step("Check View Calendar")
     public void viewCalendar() {
         login(Variables.MAIN_ACCOUNT, Variables.MAIN_PASSWORD);
         hoverOverElement(elements.workoutsBtn);
@@ -152,7 +154,7 @@ public class WorkoutTestLogic extends MainLogic {
                 "Didn't was add quick workout in Calendar!!!");
     }
 
-    @Step()
+    @Step("Check View Report")
     public void viewReport() {
         hoverOverElement(elements.workoutsBtn);
         clickWhenReady(elements.reportsStatisticsBtn);
@@ -169,6 +171,7 @@ public class WorkoutTestLogic extends MainLogic {
 
         for (int i = 0; i < elements.reportTable.size(); i++) {
             if (elements.reportTable.get(i).getText().toLowerCase(Locale.ROOT).contains("run - hills")) {
+                log.info("Added report: [{}]", elements.reportTable.get(i).getText());
                 break;
             } else if ((i + 1) == elements.reportTable.size() && !elements.reportTable.get(i).getText().toLowerCase(Locale.ROOT).contains("run - hills")) {
                 Assert.fail("Report Filter doesn't work!!!");
@@ -176,7 +179,7 @@ public class WorkoutTestLogic extends MainLogic {
         }
     }
 
-    @Step()
+    @Step("Check Print Workout")
     public void printWorkout() {
         hoverOverElement(elements.workoutsBtn);
         clickWhenReady(elements.printWorkoutBtn);
@@ -199,16 +202,9 @@ public class WorkoutTestLogic extends MainLogic {
                 "Don't print activities");
         clickWhenReady(elements.printLink);
         makePause(3000);
-//        String buff = driver.ge;
-//        System.out.println(buff);
-        // TODO почему то фейлится разобраться!!
-        clickWithSikuli(Variables.PRINT_BUTTON);
-        makePause(3000);
-        uploadFile(Variables.PROJECT_UPLOAD_TEST_PATH);
-        makePause(5000);
     }
 
-    @Step()
+    @Step("Check Add Workout Library")
     public void addWorkoutLibrary() {
         login(Variables.MAIN_ACCOUNT, Variables.MAIN_PASSWORD);
         hoverOverElement(elements.workoutsBtn);
@@ -232,6 +228,7 @@ public class WorkoutTestLogic extends MainLogic {
 
         for (int i = 0; i < elements.libraryTable.size(); i++) {
             if (elements.libraryTable.get(i).getText().contains(workoutModel.getNewLibrary())) {
+                log.info("Added library: [{}]", elements.libraryTable.get(i).getText());
                 break;
             } else if ((i + 1) == elements.libraryTable.size() && !elements.libraryTable.get(i).getText().contains(workoutModel.getName())) {
                 Assert.fail("Doesn't added NEW WORKOUT TO LIBRARY!!!");
@@ -239,7 +236,7 @@ public class WorkoutTestLogic extends MainLogic {
         }
     }
 
-    @Step()
+    @Step("Check Add New Activity Zone")
     public void addNewActivityZone() {
         login(Variables.MAIN_ACCOUNT, Variables.MAIN_PASSWORD);
         hoverOverElement(elements.workoutsBtn);
@@ -271,7 +268,7 @@ public class WorkoutTestLogic extends MainLogic {
                 "Doesn't added NEW ACTIVITY ZONE!!!");
     }
 
-    @Step()
+    @Step("Check Add New Activity Type")
     public void addNewActivityType() {
         login(Variables.MAIN_ACCOUNT, Variables.MAIN_PASSWORD);
         hoverOverElement(elements.workoutsBtn);
@@ -283,6 +280,7 @@ public class WorkoutTestLogic extends MainLogic {
 
         for (int i = 0; i < elements.activityType.size(); i++) {
             if (elements.activityType.get(i).getText().contains(workoutModel.getName())) {
+                log.info("Added activity type: [{}]", elements.activityType.get(i).getText());
                 break;
             } else if ((i + 1) == elements.activityType.size() && !elements.activityType.get(i).getText().contains(workoutModel.getName())) {
                 Assert.fail("Doesn't added NEW ACTIVITY TYPE!!!");
@@ -290,7 +288,7 @@ public class WorkoutTestLogic extends MainLogic {
         }
     }
 
-    @Step()
+    @Step("Check Import Data")
     public void importData() {
         login(Variables.MAIN_ACCOUNT, Variables.MAIN_PASSWORD);
         hoverOverElement(elements.workoutsBtn);

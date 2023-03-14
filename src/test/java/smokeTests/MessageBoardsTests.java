@@ -8,28 +8,22 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import utils.DriverInstances;
-import utils.Retry;
-import utils.Settings;
-import utils.WebDriverWaitHelper;
+import utils.*;
 
+@Listeners(WebEventListener.class)
 public class MessageBoardsTests extends BaseTest {
 
     private MessageBoardsTestLogic logic;
 
     @BeforeClass
     private void beforeClass(ITestContext iTestContext) {
-        driver = DriverInstances.getInstance(Settings.DRIVER);
-        setContextAttribute(iTestContext, "driver", driver);
+        driver = DriverInstances.getInstance(Settings.DRIVER, iTestContext);
         WebDriverWait wait = WebDriverWaitHelper.generateWaits(driver, 5, 30, 3);
         PageElementsMessageBoards elements = new PageElementsMessageBoards(driver);
         logic = new MessageBoardsTestLogic(driver, wait, elements);
         logic.getRootPage();
-    }
-
-    private void setContextAttribute(ITestContext iTestContext, String attributeKey, Object attributeValue) {
-        iTestContext.setAttribute(attributeKey, attributeValue);
     }
 
     @AfterClass

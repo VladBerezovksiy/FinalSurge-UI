@@ -1,6 +1,9 @@
 package utils;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import logic.credentials.WindowSizeConstants;
+import lombok.extern.log4j.Log4j2;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -10,6 +13,7 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
+import org.testng.ITestContext;
 import org.testng.annotations.Listeners;
 
 import java.util.HashMap;
@@ -17,6 +21,7 @@ import java.util.Map;
 
 import static java.util.concurrent.TimeUnit.SECONDS;
 
+@Log4j2
 @Listeners(WebEventListener.class)
 public class DriverInstances {
 
@@ -33,7 +38,7 @@ public class DriverInstances {
      *                   EG - Edge
      */
 
-    public static synchronized WebDriver getInstance(String driverType) {
+    public static WebDriver getInstance(String driverType, ITestContext iTestContext) {
         WebDriver webDriver = webDriverInstances.get(driverType);
 
         switch (driverType.toUpperCase()) {
@@ -45,6 +50,7 @@ public class DriverInstances {
                 chromePrefs.put("download.default_directory", downloadFilepath);
                 ChromeOptions options = new ChromeOptions();
                 options.setExperimentalOption("prefs", chromePrefs);
+                options.addArguments("--headless");
                 DesiredCapabilities cap = DesiredCapabilities.chrome();
                 cap.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
                 cap.setCapability(ChromeOptions.CAPABILITY, options);
@@ -67,6 +73,7 @@ public class DriverInstances {
                 firefoxOptions.addPreference("browser.download.manager.useWindow", false);
                 firefoxOptions.addPreference("browser.download.manager.showAlertOnComplete", false);
                 firefoxOptions.addPreference("browser.download.manager.closeWhenDone", false);
+                firefoxOptions.addArguments("--headless");
                 WebDriverManager.firefoxdriver().setup();
                 webDriver = new FirefoxDriver(firefoxOptions);
                 break;
@@ -81,9 +88,21 @@ public class DriverInstances {
         }
         webDriverInstances.put(driverType, webDriver);
         System.out.println("New WebDriver instance has been initialized: " + driverType);
+        Dimension dimension = new Dimension(
+                WindowSizeConstants.WIGHT_WINDOW,
+                WindowSizeConstants.HEIGHT_WINDOW
+        );
+        setContextAttribute(iTestContext, "webDriver", webDriver);
+        log.info("Size of window browser [{}]x[{}]",
+                WindowSizeConstants.WIGHT_WINDOW, WindowSizeConstants.HEIGHT_WINDOW);
+        webDriver.manage().window().setSize(dimension);
         webDriver.manage().timeouts().setScriptTimeout(60, SECONDS);
         webDriver.manage().timeouts().pageLoadTimeout(60, SECONDS);
         return new EventFiringWebDriver(webDriver);
+    }
+
+    private static void setContextAttribute(ITestContext iTestContext, String attributeKey, Object attributeValue) {
+        iTestContext.setAttribute(attributeKey, attributeValue);
     }
 
 }

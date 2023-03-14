@@ -16,16 +16,11 @@ public class PreferencesTests extends BaseTest {
 
     @BeforeClass
     protected void beforeClass(ITestContext iTestContext) {
-        driver = DriverInstances.getInstance(Settings.DRIVER);
-        setContextAttribute(iTestContext, "driver", driver);
+        driver = DriverInstances.getInstance(Settings.DRIVER, iTestContext);
         WebDriverWait wait = WebDriverWaitHelper.generateWaits(driver, 5, 30, 3);
         PageElementsPreferences elements = new PageElementsPreferences(driver);
         logic = new PreferencesTestLogic(driver, wait, elements);
         logic.getRootPage();
-    }
-
-    private void setContextAttribute(ITestContext iTestContext, String attributeKey, Object attributeValue) {
-        iTestContext.setAttribute(attributeKey, attributeValue);
     }
 
     @AfterClass

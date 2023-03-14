@@ -4,6 +4,7 @@ import io.qameta.allure.Step;
 import logic.MainLogic;
 import logic.elements.PageElementsDailyVitals;
 import logic.models.DailyVitalsModal;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,6 +14,7 @@ import utils.Variables;
 
 import java.util.List;
 
+@Log4j2
 public class DailyVitalsTestLogic extends MainLogic {
 
     private PageElementsDailyVitals elements;
@@ -35,13 +37,14 @@ public class DailyVitalsTestLogic extends MainLogic {
     }
 
 
-    @Step()
+    @Step("Clear values of Daily Vitals")
     public void clearHistory() {
         for (int i = 0; i < elements.dateLinks.size(); i++) {
             for (int j = 1; j <= elements.columns.size(); j++) {
                 List<WebElement> el = driver.findElements(By.cssSelector(".table-striped tr:nth-child(" + (i + 1) + ") td:nth-child(" + (j + 1) + ")"));
                 for (WebElement elem : el) {
                     if (elem.getText().isEmpty()) {
+                        log.info("Open: [{}]", elem.getText());
                         break;
                     }
                     clickWhenReady(elements.dateLinks.get(i));
@@ -54,7 +57,7 @@ public class DailyVitalsTestLogic extends MainLogic {
         }
     }
 
-    @Step()
+    @Step("Add Daily Vitals")
     public void addDailyAndVitals() {
         login(Variables.MAIN_ACCOUNT, Variables.MAIN_PASSWORD);
         hoverOverElement(elements.dailyVitalsBtn);
@@ -63,6 +66,7 @@ public class DailyVitalsTestLogic extends MainLogic {
                 elements.selectDateDropdownOption, 1);
         for (int i = 0; i < elements.dateLinks.size(); i++) {
             if (elements.dateLinks.get(i).getText().contains(dailyVitalsModal.getDate())) {
+                log.info("Click on: [{}]", elements.dateLinks.get(i).getText());
                 clickWhenReady(elements.dateLinks.get(i));
                 break;
             }
@@ -121,7 +125,7 @@ public class DailyVitalsTestLogic extends MainLogic {
                 List<WebElement> column =
                         driver.findElements(By.cssSelector(".table-striped tr:nth-child(" + (i + 1) + ") td"));
                 for (WebElement webElement : column) {
-                    System.out.println(webElement.getText().trim());
+                    log.info("Added: [{}]", webElement.getText().trim());
                     Assert.assertFalse(webElement.getText().trim().isEmpty(),
                             "Don't add DAILY VITALS!!!");
                 }

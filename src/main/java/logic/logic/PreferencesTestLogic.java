@@ -4,11 +4,13 @@ import io.qameta.allure.Step;
 import logic.MainLogic;
 import logic.elements.PageElementsPreferences;
 import logic.models.PreferencesModel;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import utils.Variables;
 
+@Log4j2
 public class PreferencesTestLogic extends MainLogic {
 
     private PageElementsPreferences elements;
@@ -40,7 +42,7 @@ public class PreferencesTestLogic extends MainLogic {
 
     /************************************* USER SETTINGS LOGIC *******************************************/
 
-    @Step()
+    @Step("Change Primary Sport in User Settings")
     public void changePrimarySport() {
         followToSettingsPage();
         clickWhenReady(elements.userSettingsButton);
@@ -48,17 +50,19 @@ public class PreferencesTestLogic extends MainLogic {
                 elements.primarySportDropDownOptions, 2);
         clickWhenReady(elements.saveChangesButton);
         makePause(3000);
+        log.info("Primary Sport: [{}]", elements.primarySportText.getText().trim());
         Assert.assertTrue(elements.primarySportText.getText().trim().contains("Triathlon"),
                 "The primary sport hasn't changed!");
     }
 
-    @Step()
+    @Step("Change Language in User Settings")
     public void changeLanguage() {
         followToSettingsPage();
         clickWhenReady(elements.userSettingsButton);
         clickWhenReady(elements.spainLanguageRadioButton);
         clickWhenReady(elements.saveChangesButton);
         makePause(3000);
+        log.info("Language: [{}]", elements.languageText.getText().trim());
         Assert.assertTrue(elements.languageText.getText().trim().contains("español"),
                 "The language hasn't changed!");
 
@@ -66,11 +70,12 @@ public class PreferencesTestLogic extends MainLogic {
         clickWhenReady(elements.englishLanguageRadioButton);
         clickWhenReady(elements.saveChangesButton);
         makePause(3000);
+        log.info("Language: [{}]", elements.languageText.getText().trim());
         Assert.assertTrue(elements.languageText.getText().trim().contains("English"),
                 "The language hasn't changed!");
     }
 
-    @Step()
+    @Step("Change Time Zone in User Settings")
     public void changeTimeZone() {
         followToSettingsPage();
         clickWhenReady(elements.userSettingsButton);
@@ -78,6 +83,7 @@ public class PreferencesTestLogic extends MainLogic {
                 elements.timeZoneDropDownOptions, 2);
         clickWhenReady(elements.saveChangesButton);
         makePause(3000);
+        log.info("Time Zone: [{}]", elements.timeZoneText.getText().trim());
         Assert.assertTrue(elements.timeZoneText.getText().trim().contains("UTC-11"),
                 "The time zone hasn't changed!");
     }
@@ -85,13 +91,14 @@ public class PreferencesTestLogic extends MainLogic {
 
     /************************************* CALENDAR SYNC LOGIC *******************************************/
 
-    @Step()
+    @Step("Change Calendar Sync status in Calendar Sync Settings")
     public void changeCalendarSync() {
         followToSettingsPage();
         clickWhenReady(elements.editSyncButton);
         clickWhenReady(elements.turnOnRadioButton);
         clickWhenReady(elements.saveChangesButton1);
         makePause(3000);
+        log.info("Calendar status: [{}]", elements.calendarSyncStatusText.getText().trim());
         Assert.assertTrue(elements.calendarSyncStatusText.getText().trim().contains("On"),
                 "The time zone hasn't changed!");
 
@@ -99,6 +106,7 @@ public class PreferencesTestLogic extends MainLogic {
         clickWhenReady(elements.turnOffRadioButton);
         clickWhenReady(elements.saveChangesButton1);
         makePause(3000);
+        log.info("Calendar status: [{}]", elements.calendarSyncStatusText.getText().trim());
         Assert.assertTrue(elements.calendarSyncStatusText.getText().trim().contains("Off"),
                 "The time zone hasn't changed!");
     }
@@ -106,14 +114,16 @@ public class PreferencesTestLogic extends MainLogic {
 
     /************************************* SOCIAL MEDIA LOGIC *******************************************/
 
-    @Step()
+    @Step("Add Social Media in Social Media Settings")
     public void addSocialMedia() {
         followToSettingsPage();
         clickWhenReady(elements.editSocialMediaButton);
         String urlExpected = driver.getCurrentUrl();
+        log.info("URL: [{}]", urlExpected);
         clickWhenReady(elements.twitterButton);
         makePause(3000);
         String urlActual = driver.getCurrentUrl();
+        log.info("URL: [{}]", urlActual);
         Assert.assertNotEquals(urlExpected, urlActual,
                 "The Twitter page hasn't open!!!");
     }
@@ -121,7 +131,7 @@ public class PreferencesTestLogic extends MainLogic {
 
     /************************************* SECURITY SETTINGS LOGIC *******************************************/
 
-    @Step()
+    @Step("Change Password in Security Settings")
     public void changePassword() {
         followToSettingsPage();
         clickWhenReady(elements.editSecuritySettings);
@@ -140,7 +150,7 @@ public class PreferencesTestLogic extends MainLogic {
         login(Variables.MAIN_ACCOUNT, preferencesModel.getNewPass());
     }
 
-    @Step()
+    @Step("Change Security Question in Security Settings")
     public void changeSecurityQuestion() {
         followToSettingsPage();
         clickWhenReady(elements.editSecuritySettings);
@@ -160,7 +170,7 @@ public class PreferencesTestLogic extends MainLogic {
 
     /************************************* USER PROFILE SETTINGS LOGIC *******************************************/
 
-    @Step()
+    @Step("Change User Data in User Profile Settings")
     public void changeUserData() {
         followToSettingsPage();
         clickWhenReady(elements.editProfileButton);
@@ -185,36 +195,43 @@ public class PreferencesTestLogic extends MainLogic {
                 .sendKeys(String.valueOf(preferencesModel.getZipCode()));
         clickWhenReady(elements.submitButton);
         makePause(3000);
+        log.info("First and Last Name: [{}]", elements.nameText.getText().trim());
         Assert.assertTrue(elements.nameText.getText().trim().contains(preferencesModel.getFirstName()),
                 "The first name isn't correct!!!");
         Assert.assertTrue(elements.nameText.getText().trim().contains(preferencesModel.getLastName()),
                 "The last name isn't correct!!!");
+        log.info("Email: [{}]", elements.emailText.getText().trim());
         Assert.assertTrue(elements.emailText.getText().trim().contains(Variables.MAIN_ACCOUNT),
                 "The email isn't correct!!!");
+        log.info("Birthday: [{}]", elements.birthdayText.getText().trim());
         Assert.assertTrue(elements.birthdayText.getText().trim().contains(preferencesModel.getBirthday()),
                 "The birthday isn't correct!!!");
+        log.info("City: [{}]", elements.cityText.getText().trim());
         Assert.assertTrue(elements.cityText.getText().trim().contains(preferencesModel.getCity()),
                 "The city isn't correct!!!");
+        log.info("Zip Code: [{}]", elements.zipCodeText.getText().trim());
         Assert.assertTrue(elements.zipCodeText.getText().trim().contains(String.valueOf(preferencesModel.getZipCode())),
                 "The zip code isn't correct!!!");
     }
 
     // не работает на веб-сайте
-    @Step()
+    @Step("Change Email in User Profile Settings")
     public void changeEmail() {
         followToSettingsPage();
         clickWhenReady(elements.editProfileButton);
         clickWhenReady(elements.emailChangedLink);
         waitForVisible(elements.emailInputField).clear();
-        waitForVisible(elements.emailInputField).sendKeys(Variables.MAIN_ACCOUNT);
+        waitForVisible(elements.emailInputField)
+                .sendKeys(Variables.MAIN_ACCOUNT);
         waitForVisible(elements.passwordInputField).clear();
-        waitForVisible(elements.passwordInputField).sendKeys(Variables.MAIN_PASSWORD);
+        waitForVisible(elements.passwordInputField)
+                .sendKeys(Variables.MAIN_PASSWORD);
         clickWhenReady(elements.saveChangeEmailBtn);
         makePause(3000);
 
     }
 
-    @Step()
+    @Step("Delete Account in User Profile Settings")
     public void deleteAccount() {
         followToSettingsPage();
         clickWhenReady(elements.editProfileButton);

@@ -28,7 +28,6 @@ public class WorkoutsTests extends BaseTest {
 
     @AfterClass
     private void tearDown() {
-        // TODO: добавить очистку (View Calendar, Workout Library, Pace Zones, Activity Types)
         driver.quit();
     }
 

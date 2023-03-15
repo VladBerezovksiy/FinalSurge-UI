@@ -21,6 +21,7 @@ public class WebEventListener implements ITestListener {
         ITestContext context = iTestResult.getTestContext();
         try {
             WebDriver driver = (WebDriver) context.getAttribute("webDriver");
+            System.out.println("Driver = " + String.valueOf(driver));
             if (driver != null) {
                 return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
             } else {
@@ -35,7 +36,7 @@ public class WebEventListener implements ITestListener {
         ITestContext context = iTestResult.getTestContext();
         try {
             WebDriver driver = (WebDriver) context.getAttribute("webDriver");
-            System.out.println("driver = " +  String.valueOf(driver));
+            System.out.println("driver = " + String.valueOf(driver));
             if (driver != null) {
                 String filename = String.format("%s%s_screenshot.jpg", "target/site/", new Date());
                 byte[] bytes = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);

@@ -25,9 +25,7 @@
                 <configuration>
                     <forkCount>2</forkCount>
                     <reuseForks>true</reuseForks>
-                    <argLine>
-                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/1.9.8/aspectjweaver-1.9.8.jar"
-                    </argLine>
+                    <argLine>-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/1.9.8/aspectjweaver-1.9.8.jar"</argLine>
                     <useSystemClassLoader>false</useSystemClassLoader>
                     <suiteXmlFiles>
                         <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
@@ -44,10 +42,7 @@
             <plugin>
                 <groupId>io.qameta.allure</groupId>
                 <artifactId>allure-maven</artifactId>
-                <version>2.9</version>
-                <configuration>
-                    <reportVersion>2.13.2</reportVersion>
-                </configuration>
+                <version>2.11.2</version>
             </plugin>
         </plugins>
     </build>
@@ -81,7 +76,7 @@
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-testng</artifactId>
-            <version>2.13.5</version>
+            <version>2.17.2</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->

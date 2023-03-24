@@ -19,7 +19,7 @@ public class RoutesModel {
     @Builder.Default
     String routeRecord = GenerateValuesUtils.generateTimeName();
     @Builder.Default
-    String dateRecord = GenerateValuesUtils.generateDateName();
+    String dateRecord = GenerateValuesUtils.generateShortDateName();
     @Builder.Default
     String notes = "AQA TEST";
 

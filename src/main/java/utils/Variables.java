@@ -1,7 +1,5 @@
 package utils;
 
-import logic.credentials.LoginData;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,9 +8,9 @@ public class Variables {
 
     /********************************************* DRIVER TYPES ****************************************************/
 
-    public static final String GOOGLE_CHROME = "GC";
-    public static final String FIREFOX = "FF";
-    public static final String EDGE = "EG";
+    public static final String GOOGLE_CHROME = "CHROME";
+    public static final String FIREFOX = "FIREFOX";
+    public static final String EDGE = "EDGE";
 
 
     /******************************* THREAD SLEEP VALUES FOR MAKING PAUSES *******************************************/
@@ -33,18 +31,10 @@ public class Variables {
     public static final String PROJECT_SCREENSHOT_PATH = System.getProperty("user.dir") + "\\src\\main\\resources\\screenshots\\";
 
 
-    /****************************************** FILES EXTENSIONS ************************************************/
-
-    public static final String FILE_ZIP = ".zip";
-    public static final String FILE_EML = ".eml";
-    public static final String FILE_CSV = ".csv";
-    public static final String FILE_VCF = ".vcf";
-
-
     /******************************************* CLUSTERS ******************************************************/
 
     public enum Clusters {
-        Stage
+        Stage, Prod
     }
 
     public static final Map<Clusters, String[][]> clusters = createClusters();
@@ -72,9 +62,6 @@ public class Variables {
 
     public static final String MAIN_ACCOUNT = envSet[0][1];
     public static final String MAIN_PASSWORD = envSet[0][2];
-
-    public static final String ACCOUNT = LoginData.CLUSTER;
-    public static final String BROWSER = LoginData.BROWSER;
 
     public static final String NONEXISTENT_EMAIL = "nonexistingemail@domain.org";
     public static final String INCORRECT_PASSWORD = "NonExisting#123";

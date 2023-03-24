@@ -50,7 +50,7 @@ public class DriverInstances {
                 chromePrefs.put("download.default_directory", downloadFilepath);
                 ChromeOptions options = new ChromeOptions();
                 options.setExperimentalOption("prefs", chromePrefs);
-//                options.addArguments("--headless");
+                options.addArguments("--headless");
                 DesiredCapabilities cap = DesiredCapabilities.chrome();
                 cap.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
                 cap.setCapability(ChromeOptions.CAPABILITY, options);
@@ -73,7 +73,7 @@ public class DriverInstances {
                 firefoxOptions.addPreference("browser.download.manager.useWindow", false);
                 firefoxOptions.addPreference("browser.download.manager.showAlertOnComplete", false);
                 firefoxOptions.addPreference("browser.download.manager.closeWhenDone", false);
-//                firefoxOptions.addArguments("--headless");
+                firefoxOptions.addArguments("--headless");
                 WebDriverManager.firefoxdriver().setup();
                 webDriver = new FirefoxDriver(firefoxOptions);
                 break;

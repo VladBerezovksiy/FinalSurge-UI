@@ -39,6 +39,7 @@ public class DriverInstances {
 
     public static WebDriver getInstance(String driverType, ITestContext iTestContext) {
         WebDriver webDriver = webDriverInstances.get(driverType);
+        log.info("Browser: [{}]", driverType.toUpperCase());
 
         switch (driverType.toUpperCase()) {
             case Variables.GOOGLE_CHROME:

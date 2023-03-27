@@ -41,6 +41,10 @@ mvn allure:serve
 mvn allure:report
 ```
 
+## Change browser instruction:
+
+![alt-text](src/test/resources/ChangeBrowserImage.png "Image 1 - Steps to change Browser")
+
 ### Test Plan:
 
 | ID  | Pages            | Status | 
